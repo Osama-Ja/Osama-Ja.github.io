@@ -343,8 +343,8 @@ body.dark-mode .social-icon:hover {
 /* Toggle Buttons (Language & Theme) */
 .toggle-btns {
     position: fixed;
-    top: 20px;   /* ثابتة على بعد 20 بكسل من الأعلى للشاشات الكبيرة والصغيرة */
-    right: 20px; /* ثابتة على بعد 20 بكسل من اليمين للشاشات الكبيرة والصغيرة */
+    top: 20px;   /* ثابتة على بعد 20 بكسل من الأعلى لكل الشاشات */
+    right: 20px; /* ثابتة على بعد 20 بكسل من اليمين لكل الشاشات */
     z-index: 1050;
     display: flex;
     gap: 12px;
@@ -362,10 +362,9 @@ body.dark-mode .toggle-btns {
 }
 
 /* تعديل موقع الأزرار في وضع RTL (اللغة العربية) */
-/* نستخدم هذا السلكتور لاستهداف .toggle-btns عندما يكون #content-ar فعالاً */
 #content-ar.active + .toggle-btns {
     right: auto; /* إلغاء التثبيت من اليمين */
-    left: 20px;  /* تثبيت من اليسار */
+    left: 20px;  /* تثبيت من اليسار لكل الشاشات */
 }
 
 
@@ -508,15 +507,13 @@ body.dark-mode #backToTopBtn:hover {
         font-size: 0.9rem;
     }
     .toggle-btns {
-        top: 15px; /* ثابتة على بعد 15 بكسل من الأعلى على الجوال */
-        right: 15px; /* ثابتة على بعد 15 بكسل من اليمين على الجوال */
+        /* تم إزالة top و right من هنا لتبقى ثابتة على كل الشاشات */
         gap: 8px;
         padding: 8px 12px;
     }
     /* تعديل موقع الأزرار في وضع RTL (اللغة العربية) على الموبايل */
     #content-ar.active + .toggle-btns {
-        left: 15px;
-        right: auto;
+        /* لا حاجة لتغيير top و left/right هنا، لأنها أصبحت عامة */
     }
     .btn-toggle {
         padding: 8px 15px;
@@ -549,7 +546,8 @@ body.dark-mode #backToTopBtn:hover {
     flex-direction: row-reverse;
 }
 #content-ar .contact-btn {
-    margin: 10px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 #content-ar .contact-btn i {
     margin-left: 8px;
