@@ -175,17 +175,18 @@ body.light-mode .btn-outline-primary:hover {
     background-color: var(--light-primary-color);
     color: white;
 }
-body.light-mode .btn-toggle {
-    background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
-    color: white;
-    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+
+/* التنسيقات العامة لـ .btn-toggle (بدون تحديد موضع) */
+.btn-toggle {
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform 0.2s ease;
 }
-body.light-mode .btn-toggle:hover {
-    background: linear-gradient(45deg, var(--light-gradient-end), var(--light-gradient-start));
-    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
-    transform: translateY(-3px); /* Subtle lift */
-}
+
+/* Social Icons (لا تغيير) */
 body.light-mode .social-icon {
     color: var(--light-social-icon-color);
     transition: color var(--hover-transition), transform var(--hover-transition);
@@ -273,17 +274,7 @@ body.dark-mode .btn-outline-primary:hover {
     background-color: var(--dark-primary-color);
     color: white;
 }
-body.dark-mode .btn-toggle {
-    background: linear-gradient(45deg, var(--dark-gradient-start), var(--dark-gradient-end));
-    color: white;
-    box-shadow: 0 4px 10px rgba(26, 188, 156, 0.6);
-    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
-}
-body.dark-mode .btn-toggle:hover {
-    background: linear-gradient(45deg, var(--dark-gradient-end), var(--dark-gradient-start));
-    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.9);
-    transform: translateY(-3px); /* Subtle lift */
-}
+/* Social Icons (لا تغيير) */
 body.dark-mode .social-icon {
     color: var(--dark-social-icon-color);
     transition: color var(--hover-transition), transform var(--hover-transition);
@@ -340,47 +331,92 @@ body.dark-mode .social-icon:hover {
     opacity: 0.8;
 }
 
-/* Toggle Buttons (Language & Theme) */
+/* --- تعديلات أزرار التبديل - منفصلة وثابتة --- */
+/* نلغي الخصائص الرئيسية لـ .toggle-btns لأن الأزرار ستكون منفصلة */
 .toggle-btns {
-    position: fixed;
-    top: 20px;   /* ثابتة على بعد 20 بكسل من الأعلى لكل الشاشات */
-    right: 20px; /* ثابتة على بعد 20 بكسل من اليمين لكل الشاشات */
-    z-index: 1050;
+    /* فقط نحافظ على display: flex; و gap; إذا كانت تجمع عناصر أخرى غير الأزرار الثابتة */
     display: flex;
-    gap: 12px;
-    padding: 10px 15px; /* مسافة داخلية حول الأزرار */
-    border-radius: 10px; /* حواف دائرية للمظهر الجمالي */
-    background-color: rgba(0, 0, 0, 0.7); /* خلفية شبه شفافة لتجميع الأزرار */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* ظل خفيف لتحسين المظهر */
-    transition: background-color var(--transition-speed), box-shadow var(--transition-speed); /* لتغير الألوان مع الثيم */
+    gap: 12px; /* المسافة بين الأزرار إذا كانوا في نفس السطر */
+    /* إزالة position, top, right, padding, border-radius, background-color, box-shadow من هنا */
+    /* هذه الخصائص سيتم تطبيقها مباشرة على theme-toggle-btn و lang-toggle-btn */
 }
-
-/* لتخصيص ألوان الخلفية لـ .toggle-btns في Dark Mode */
+/* تأكد أن خلفية .toggle-btns شفافة في الوضع الداكن أيضًا */
 body.dark-mode .toggle-btns {
-    background-color: rgba(26, 188, 156, 0.2); /* Teal شبه شفاف في Dark Mode */
-    box-shadow: 0 4px 15px rgba(26, 188, 156, 0.2);
+    background-color: transparent;
+    box-shadow: none;
 }
 
-/* تعديل موقع الأزرار في وضع RTL (اللغة العربية) */
-#content-ar.active + .toggle-btns {
-    right: auto; /* إلغاء التثبيت من اليمين */
-    left: 20px;  /* تثبيت من اليسار لكل الشاشات */
-}
-
-
-.btn-toggle {
-    font-weight: 600;
-    border-radius: 30px;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform 0.2s ease;
-}
+/* زر الوضع الليلي/النهاري (ثابت في اليمين) */
 .theme-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050; /* تأكد أنه أعلى من باقي المحتوى */
     display: flex;
     align-items: center;
     gap: 8px;
+    /* تنسيقات الخلفية والظل الخاصة بالزر نفسه */
+    background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
+    color: white;
+    box-shadow: 0 4px 10px var(--light-button-shadow); /* استخدم متغير الظل العام للأزرار */
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
 }
+body.light-mode .theme-toggle-btn:hover {
+    background: linear-gradient(45deg, var(--light-gradient-end), var(--light-gradient-start));
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+    transform: translateY(-3px);
+}
+body.dark-mode .theme-toggle-btn {
+    background: linear-gradient(45deg, var(--dark-gradient-start), var(--dark-gradient-end));
+    box-shadow: 0 4px 10px var(--dark-button-shadow);
+}
+body.dark-mode .theme-toggle-btn:hover {
+    background: linear-gradient(45deg, var(--dark-gradient-end), var(--dark-gradient-start));
+    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.9);
+    transform: translateY(-3px);
+}
+
+/* زر اللغة (ثابت في اليسار) */
+.lang-toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px; /* تم نقله إلى اليسار */
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* تنسيقات الخلفية والظل الخاصة بالزر نفسه */
+    background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
+    color: white;
+    box-shadow: 0 4px 10px var(--light-button-shadow);
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.light-mode .lang-toggle-btn:hover {
+    background: linear-gradient(45deg, var(--light-gradient-end), var(--light-gradient-start));
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+    transform: translateY(-3px);
+}
+body.dark-mode .lang-toggle-btn {
+    background: linear-gradient(45deg, var(--dark-gradient-start), var(--dark-gradient-end));
+    box-shadow: 0 4px 10px var(--dark-button-shadow);
+}
+body.dark-mode .lang-toggle-btn:hover {
+    background: linear-gradient(45deg, var(--dark-gradient-end), var(--dark-gradient-start));
+    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.9);
+    transform: translateY(-3px);
+}
+
+/* تعديل وضع أزرار التبديل في وضع RTL (اللغة العربية) */
+/* نُعكس مواقع الأزرار عند تفعيل وضع RTL (عندما تكون #content-ar.active) */
+#content-ar.active .theme-toggle-btn {
+    right: auto; /* إلغاء التثبيت من اليمين */
+    left: 20px;  /* تثبيت في اليسار */
+}
+#content-ar.active .lang-toggle-btn {
+    left: auto;  /* إلغاء التثبيت من اليسار */
+    right: 20px; /* تثبيت في اليمين */
+}
+
 
 /* Section Headings */
 .section-heading {
@@ -506,16 +542,31 @@ body.dark-mode #backToTopBtn:hover {
         padding: 8px 18px;
         font-size: 0.9rem;
     }
-    .toggle-btns {
-        /* تم إزالة top و right من هنا لتبقى ثابتة على كل الشاشات */
-        gap: 8px;
-        padding: 8px 12px;
+
+    /* تعديل مسافة وحجم أزرار التبديل على الجوال */
+    .theme-toggle-btn,
+    .lang-toggle-btn {
+        top: 15px; /* مسافة أقل من الأعلى على الجوال */
+        padding: 8px 15px; /* تصغير حجم الزر قليلاً */
+        font-size: 0.9rem; /* تصغير الخط */
     }
-    /* تعديل موقع الأزرار في وضع RTL (اللغة العربية) على الموبايل */
-    #content-ar.active + .toggle-btns {
-        /* لا حاجة لتغيير top و left/right هنا، لأنها أصبحت عامة */
+    .theme-toggle-btn {
+        right: 15px; /* مسافة أقل من اليمين على الجوال */
     }
-    .btn-toggle {
+    .lang-toggle-btn {
+        left: 15px; /* مسافة أقل من اليسار على الجوال */
+    }
+
+    /* تعديل وضع أزرار التبديل في وضع RTL (اللغة العربية) على الجوال */
+    #content-ar.active .theme-toggle-btn {
+        left: 15px;
+        right: auto;
+    }
+    #content-ar.active .lang-toggle-btn {
+        right: 15px;
+        left: auto;
+    }
+    .btn-toggle { /* تأكد من تطبيق هذا على الزرين */
         padding: 8px 15px;
         font-size: 0.9rem;
     }
