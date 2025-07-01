@@ -102,12 +102,33 @@ themeToggleBtn.addEventListener('click', () => {
 // Back to Top Button
 const backToTopBtn = document.getElementById('backToTopBtn');
 
-// Show/hide the button based on scroll position
+// *** تعديلات هنا لجعل أزرار التبديل تختفي عند التمرير لأسفل ***
+// اخفاء الازرار عند التحميل إذا لم تكن في الأعلى
+if (window.scrollY > 50) { // يمكن تعديل 50px كعتبة لإخفاء الأزرار
+    langToggleBtn.style.display = 'none';
+    themeToggleBtn.style.display = 'none';
+} else {
+    langToggleBtn.style.display = 'flex'; // استخدم flex لأنها كانت hidden في CSS
+    themeToggleBtn.style.display = 'flex';
+}
+
+// Show/hide buttons based on scroll position
 window.addEventListener('scroll', () => {
+    // Show/hide Back to Top button
     if (window.scrollY > 300) { // Show button after scrolling 300px
         backToTopBtn.style.display = 'flex'; // Use flex to center the icon
     } else {
         backToTopBtn.style.display = 'none';
+    }
+
+    // Show/hide Language and Theme toggle buttons
+    // تظهر فقط عندما يكون المستخدم في أعلى الصفحة (مثلاً، أول 50 بكسل)
+    if (window.scrollY < 50) { // إذا كان التمرير أقل من 50 بكسل من الأعلى
+        langToggleBtn.style.display = 'flex';
+        themeToggleBtn.style.display = 'flex';
+    } else { // إذا كان المستخدم قد مرر لأسفل أكثر من 50 بكسل
+        langToggleBtn.style.display = 'none';
+        themeToggleBtn.style.display = 'none';
     }
 });
 
