@@ -1,0 +1,547 @@
+/* CSS Variables for easier theming */
+:root {
+    /* Light Mode Colors - Refined Professional Design */
+    --light-bg: #f5f7fa; /* Slightly off-white for a softer look - This is the current professional choice */
+    --light-text: #2c3e50; /* Darker, professional text */
+    --light-lead-text: #506275; /* Soft gray for lead paragraphs */
+
+    /* Primary Accent Blue - Professional and inviting */
+    --light-primary-color: #3498db; /* A friendly, professional blue */
+    --light-secondary-color: #2980b9; /* A slightly darker blue for depth */
+    --light-gradient-start: var(--light-primary-color);
+    --light-gradient-end: var(--light-secondary-color);
+
+    --light-card-bg: #ffffff; /* Pure white cards */
+    --light-card-shadow: rgba(0, 0, 0, 0.07); /* Very subtle shadow */
+
+    --light-profile-border: var(--light-primary-color);
+    --light-profile-shadow: rgba(52, 152, 219, 0.3); /* Shadow based on primary */
+
+    --light-heading-color: var(--light-primary-color);
+    --light-section-border: var(--light-primary-color);
+
+    --light-button-text: #ffffff;
+    --light-button-shadow: rgba(52, 152, 219, 0.4);
+
+    /* --- تعديلات هنا لـ Skill Tag في الوضع النهاري --- */
+    --light-skill-tag-bg: #ffffff; /* خلفية بيضاء لتبدو كالفقاعة على الخلفية الفاتحة */
+    --light-skill-tag-text: #4a658a; /* نص أزرق رمادي داكن */
+    --light-skill-tag-border: #e0e6ed; /* حدود فاتحة لتمييزها */
+    --light-skill-tag-shadow: rgba(0, 0, 0, 0.08); /* ظل خفيف جدًا */
+
+    /* الألوان الجديدة لتأثير الهوفر (الدوائر الملونة/التوهج) */
+    --light-skill-tag-hover-border-color: var(--light-primary-color); /* لون الحدود عند الهوفر */
+    --light-skill-tag-hover-glow-color: rgba(52, 152, 219, 0.4); /* لون التوهج (الأزرق) */
+    --light-skill-tag-hover-bg: #f0f4f7; /* تغيير خفيف للخلفية عند الهوفر */
+
+
+    --light-social-icon-color: var(--light-primary-color);
+    --light-social-icon-hover: var(--light-secondary-color);
+
+
+    /* Dark Mode Colors - Refined for depth and readability */
+    --dark-bg: #2c3e50; /* Deep, muted blue-gray */
+    --dark-text: #ecf0f1; /* Off-white for high contrast */
+    --dark-lead-text: #bdc3c7; /* Lighter gray for lead paragraphs */
+
+    /* Primary Accent Teal/Green - Professional and calm */
+    --dark-primary-color: #1abc9c; /* A vibrant teal */
+    --dark-secondary-color: #16a085; /* A slightly darker teal for depth */
+    --dark-gradient-start: var(--dark-primary-color);
+    --dark-gradient-end: var(--dark-secondary-color);
+
+    --dark-card-bg: #34495e; /* Slightly lighter than background, deep blue-gray */
+    --dark-card-border: #1abc9c;
+    --dark-card-shadow: rgba(26, 188, 156, 0.3);
+
+    --dark-profile-border: var(--dark-primary-color);
+    --dark-profile-shadow: rgba(26, 188, 156, 0.5);
+
+    --dark-heading-color: var(--dark-primary-color);
+    --dark-section-border: var(--dark-primary-color);
+
+    --dark-button-text: #ffffff;
+    --dark-button-shadow: rgba(26, 188, 156, 0.6);
+
+    --dark-skill-tag-bg: #4a658a; /* Muted blue-gray for tags */
+    --dark-skill-tag-text: #ecf0f1; /* Off-white for tag text */
+    --dark-skill-tag-shadow: rgba(0, 0, 0, 0.15);
+    --dark-skill-tag-hover-bg: linear-gradient(45deg, var(--dark-gradient-start), var(--dark-gradient-end));
+    --dark-skill-tag-hover-text: #ffffff;
+    --dark-skill-tag-hover-shadow: rgba(26, 188, 156, 0.6);
+
+    --dark-social-icon-color: var(--dark-primary-color);
+    --dark-social-icon-hover: var(--dark-secondary-color);
+
+    /* Fonts */
+    --heading-font: 'Poppins', sans-serif;
+    --body-font: 'Roboto', sans-serif;
+
+    /* Transitions */
+    --transition-speed: 0.4s ease-in-out;
+    --hover-transition: 0.3s ease-out; /* New variable for hover effects */
+}
+
+/* Global styles */
+body {
+    font-family: var(--body-font);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+    line-height: 1.6;
+}
+
+/* Light Mode */
+body.light-mode {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+body.light-mode p.lead {
+    color: var(--light-lead-text);
+}
+body.light-mode .profile-photo {
+    border-color: var(--light-profile-border);
+    box-shadow: 0 0 15px var(--light-profile-shadow);
+    transition: box-shadow var(--hover-transition), transform var(--hover-transition), border-color var(--transition-speed);
+}
+body.light-mode .profile-photo:hover {
+    box-shadow: 0 0 30px var(--light-profile-shadow);
+    transform: scale(1.03); /* Subtle zoom */
+}
+body.light-mode .section-heading {
+    color: var(--light-heading-color);
+}
+body.light-mode .section-heading::after {
+    background-color: var(--light-section-border);
+}
+/* --- تعديلات هنا لـ Skill Tag في الوضع النهاري --- */
+body.light-mode .skill-tag {
+    background-color: var(--light-skill-tag-bg);
+    color: var(--light-skill-tag-text);
+    border: 2px solid var(--light-skill-tag-border); /* حدود واضحة لتمييزها */
+    box-shadow: 0 4px 10px var(--light-skill-tag-shadow); /* ظل خفيف تحتها */
+    transition: background-color var(--hover-transition), color var(--hover-transition),
+                box-shadow var(--hover-transition), transform var(--hover-transition),
+                border-color var(--hover-transition); /* إضافة border-color للانتقال */
+}
+body.light-mode .skill-tag:hover {
+    background-color: var(--light-skill-tag-hover-bg); /* خلفية خفيفة عند الهوفر */
+    border-color: var(--light-skill-tag-hover-border-color); /* تغيير لون الحدود إلى الأساسي */
+    box-shadow: 0 0 0 3px var(--light-skill-tag-hover-glow-color), /* طبقة توهج داخلية */
+                0 6px 15px rgba(0, 0, 0, 0.15); /* ظل أكبر وأوضح */
+    transform: translateY(-3px); /* رفع خفيف */
+    color: var(--light-text); /* ممكن نغير لون النص ليصبح أغمق قليلاً أو حسب الرغبة */
+}
+
+body.light-mode .project-card {
+    background-color: var(--light-card-bg);
+    box-shadow: 0 5px 20px var(--light-card-shadow);
+    transition: box-shadow var(--hover-transition), transform var(--hover-transition), background-color var(--transition-speed), border-color var(--transition-speed);
+}
+body.light-mode .project-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    transform: translateY(-10px); /* Lift effect */
+}
+body.light-mode .btn-project {
+    background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
+    color: var(--light-button-text);
+    box-shadow: 0 4px 10px var(--light-button-shadow);
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.light-mode .btn-project:hover {
+    background: linear-gradient(45deg, var(--light-gradient-end), var(--light-gradient-start));
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6); /* Enhanced shadow */
+    transform: translateY(-3px); /* Subtle lift */
+}
+body.light-mode .contact-btn {
+    background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
+    color: var(--light-button-text);
+    box-shadow: 0 4px 10px var(--light-button-shadow);
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.light-mode .contact-btn:hover {
+    background: linear-gradient(45deg, var(--light-gradient-end), var(--light-gradient-start));
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6); /* Enhanced shadow */
+    transform: translateY(-3px); /* Subtle lift */
+}
+body.light-mode .btn-outline-primary {
+    color: var(--light-primary-color);
+    border-color: var(--light-primary-color);
+    transition: all var(--hover-transition);
+}
+body.light-mode .btn-outline-primary:hover {
+    background-color: var(--light-primary-color);
+    color: white;
+}
+body.light-mode .btn-toggle {
+    background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
+    color: white;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.light-mode .btn-toggle:hover {
+    background: linear-gradient(45deg, var(--light-gradient-end), var(--light-gradient-start));
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+    transform: translateY(-3px); /* Subtle lift */
+}
+body.light-mode .social-icon {
+    color: var(--light-social-icon-color);
+    transition: color var(--hover-transition), transform var(--hover-transition);
+}
+body.light-mode .social-icon:hover {
+    color: var(--light-social-icon-hover);
+    transform: translateY(-5px) scale(1.1); /* Lift and slight zoom */
+}
+
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+body.dark-mode p.lead {
+    color: var(--dark-lead-text);
+}
+body.dark-mode .profile-photo {
+    border-color: var(--dark-profile-border);
+    box-shadow: 0 0 20px var(--dark-profile-shadow);
+    transition: box-shadow var(--hover-transition), transform var(--hover-transition), border-color var(--transition-speed);
+}
+body.dark-mode .profile-photo:hover {
+    box-shadow: 0 0 30px var(--dark-profile-shadow);
+    transform: scale(1.03); /* Subtle zoom */
+}
+body.dark-mode .section-heading {
+    color: var(--dark-heading-color);
+}
+body.dark-mode .section-heading::after {
+    background-color: var(--dark-section-border);
+}
+body.dark-mode .skill-tag {
+    background-color: var(--dark-skill-tag-bg);
+    color: var(--dark-skill-tag-text);
+    box-shadow: 0 3px 8px var(--dark-skill-tag-shadow);
+    transition: background-color var(--hover-transition), color var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.dark-mode .skill-tag:hover {
+    background: var(--dark-skill-tag-hover-bg);
+    color: var(--dark-skill-tag-hover-text);
+    box-shadow: 0 5px 15px var(--dark-skill-tag-hover-shadow);
+    transform: translateY(-5px); /* Lift effect */
+}
+body.dark-mode .project-card {
+    background-color: var(--dark-card-bg);
+    color: var(--dark-text);
+    border: 1px solid var(--dark-card-border);
+    box-shadow: 0 5px 15px var(--dark-card-shadow);
+    transition: box-shadow var(--hover-transition), transform var(--hover-transition), background-color var(--transition-speed), border-color var(--transition-speed);
+}
+body.dark-mode .project-card:hover {
+    box-shadow: 0 15px 30px rgba(26, 188, 156, 0.6);
+    transform: translateY(-10px); /* Lift effect */
+}
+body.dark-mode .btn-project {
+    background: linear-gradient(45deg, var(--dark-gradient-start), var(--dark-gradient-end));
+    color: var(--dark-button-text);
+    box-shadow: 0 4px 10px var(--dark-button-shadow);
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.dark-mode .btn-project:hover {
+    background: linear-gradient(45deg, var(--dark-gradient-end), var(--dark-gradient-start));
+    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.9);
+    transform: translateY(-3px); /* Subtle lift */
+}
+body.dark-mode .contact-btn {
+    background: linear-gradient(45deg, var(--dark-gradient-start), var(--dark-gradient-end));
+    color: var(--dark-button-text);
+    box-shadow: 0 4px 10px var(--dark-button-shadow);
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.dark-mode .contact-btn:hover {
+    background: linear-gradient(45deg, var(--dark-gradient-end), var(--dark-gradient-start));
+    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.9);
+    transform: translateY(-3px); /* Subtle lift */
+}
+body.dark-mode .btn-outline-primary {
+    color: var(--dark-primary-color);
+    border-color: var(--dark-primary-color);
+    transition: all var(--hover-transition);
+}
+body.dark-mode .btn-outline-primary:hover {
+    background-color: var(--dark-primary-color);
+    color: white;
+}
+body.dark-mode .btn-toggle {
+    background: linear-gradient(45deg, var(--dark-gradient-start), var(--dark-gradient-end));
+    color: white;
+    box-shadow: 0 4px 10px rgba(26, 188, 156, 0.6);
+    transition: background var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
+}
+body.dark-mode .btn-toggle:hover {
+    background: linear-gradient(45deg, var(--dark-gradient-end), var(--dark-gradient-start));
+    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.9);
+    transform: translateY(-3px); /* Subtle lift */
+}
+body.dark-mode .social-icon {
+    color: var(--dark-social-icon-color);
+    transition: color var(--hover-transition), transform var(--hover-transition);
+}
+body.dark-mode .social-icon:hover {
+    color: var(--dark-social-icon-hover);
+    transform: translateY(-5px) scale(1.1); /* Lift and slight zoom */
+}
+
+
+/* Profile Photo */
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid;
+}
+
+/* Skill Tags */
+.skill-tag {
+    margin: 8px;
+    padding: 10px 22px;
+    font-weight: 500;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: default;
+    user-select: none;
+}
+.skill-tag i {
+    font-size: 1.1em;
+}
+
+
+/* Project Cards */
+.project-card {
+    border-radius: 18px;
+    cursor: default;
+    overflow: hidden;
+}
+.project-card .card-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: inherit;
+}
+.project-card .project-icon {
+    font-size: 1.3em;
+    opacity: 0.8;
+}
+
+/* Toggle Buttons (Language & Theme) */
+.toggle-btns {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 1050;
+    display: flex;
+    gap: 12px;
+}
+.btn-toggle {
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform 0.2s ease;
+}
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Section Headings */
+.section-heading {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 2.2rem;
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 40px;
+    display: inline-block;
+    transition: color var(--transition-speed), border-color var(--transition-speed);
+}
+.section-heading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    height: 4px;
+    width: 70px;
+    border-radius: 2px;
+    transition: background-color var(--transition-speed);
+}
+
+/* Fade-in/out for content sections */
+.profile-section {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* فترة الانتقال */
+}
+
+.profile-section.active {
+    opacity: 1;
+}
+
+
+/* Lead Text */
+p.lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    transition: color var(--transition-speed);
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 25px;
+}
+.social-icon {
+    font-size: 2.2rem;
+    margin: 0 15px;
+}
+
+/* Contact Buttons */
+.contact-btn {
+    font-size: 1.1rem;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    margin: 10px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact-btn i {
+    margin-right: 8px;
+}
+
+/* General button styling adjustments for outlines */
+.btn-outline-primary {
+    background-color: transparent;
+    border-width: 2px;
+}
+.btn-outline-primary:hover {
+    border-color: transparent;
+}
+
+/* Back to Top Button */
+#backToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    bottom: 30px; /* Distance from bottom */
+    right: 30px; /* Distance from right */
+    z-index: 99; /* Higher z-index to be on top */
+    font-size: 24px; /* Icon size */
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: var(--light-primary-color); /* Default light mode color */
+    color: white;
+    cursor: pointer;
+    border-radius: 50%; /* Circular shape */
+    opacity: 0.8; /* Slightly transparent */
+    transition: background-color 0.3s, opacity 0.3s, transform 0.3s ease-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex; /* For centering icon */
+    align-items: center;
+    justify-content: center;
+}
+
+#backToTopBtn:hover {
+    opacity: 1;
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Back to Top Button - Dark Mode Specific */
+body.dark-mode #backToTopBtn {
+    background-color: var(--dark-primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+body.dark-mode #backToTopBtn:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .section-heading {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    p.lead {
+        font-size: 1rem;
+    }
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
+    .skill-tag {
+        margin: 5px;
+        padding: 8px 18px;
+        font-size: 0.9rem;
+    }
+    .toggle-btns {
+        top: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+    .btn-toggle {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    .social-icon {
+        font-size: 1.8rem;
+        margin: 0 10px;
+    }
+    .contact-btn {
+        width: calc(100% - 20px);
+        margin: 10px 10px;
+        display: flex;
+    }
+    #backToTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+/* Arabic specific styles */
+#content-ar {
+    direction: rtl;
+    text-align: right;
+}
+#content-ar .skill-tag {
+    flex-direction: row-reverse;
+}
+#content-ar .contact-btn {
+    margin: 10px 10px;
+}
+#content-ar .contact-btn i {
+    margin-left: 8px;
+    margin-right: 0;
+}
+/* RTL for back to top button */
+#content-ar #backToTopBtn {
+    right: auto; /* Reset right */
+    left: 30px; /* Position from left */
+}
+@media (max-width: 768px) {
+    #content-ar #backToTopBtn {
+        left: 20px;
+    }
+}
