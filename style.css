@@ -24,16 +24,16 @@
     --light-button-shadow: rgba(52, 152, 219, 0.4);
 
     /* --- تعديلات هنا لـ Skill Tag في الوضع النهاري --- */
-    --light-skill-tag-bg: #ffffff; /* خلفية بيضاء لتبدو كالفقاعة على الخلفية الفاتحة */
-    --light-skill-tag-text: #4a658a; /* نص أزرق رمادي داكن */
-    --light-skill-tag-border: #e0e6ed; /* حدود فاتحة لتمييزها */
-    --light-skill-tag-shadow: rgba(0, 0, 0, 0.08); /* ظل خفيف جدًا */
+    --light-skill-tag-bg: #e0e6ed; /* Light gray-blue for tags - Base background */
+    --light-skill-tag-text: #4a658a; /* Dark blue-gray for tag text */
+    /* ظلال جديدة لـ Neumorphism light effect */
+    --light-skill-tag-shadow-top: rgba(255, 255, 255, 0.7); /* ظل علوي فاتح */
+    --light-skill-tag-shadow-bottom: rgba(174, 174, 192, 0.2); /* ظل سفلي داكن قليلاً */
 
-    /* الألوان الجديدة لتأثير الهوفر (الدوائر الملونة/التوهج) */
-    --light-skill-tag-hover-border-color: var(--light-primary-color); /* لون الحدود عند الهوفر */
-    --light-skill-tag-hover-glow-color: rgba(52, 152, 219, 0.4); /* لون التوهج (الأزرق) */
-    --light-skill-tag-hover-bg: #f0f4f7; /* تغيير خفيف للخلفية عند الهوفر */
-
+    --light-skill-tag-hover-bg: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
+    --light-skill-tag-hover-text: #ffffff;
+    --light-skill-tag-shadow: rgba(0, 0, 0, 0.04);
+    --light-skill-tag-hover-shadow: rgba(52, 152, 219, 0.4);
 
     --light-social-icon-color: var(--light-primary-color);
     --light-social-icon-hover: var(--light-secondary-color);
@@ -116,29 +116,33 @@ body.light-mode .section-heading::after {
 body.light-mode .skill-tag {
     background-color: var(--light-skill-tag-bg);
     color: var(--light-skill-tag-text);
-    border: 2px solid var(--light-skill-tag-border); /* حدود واضحة لتمييزها */
-    box-shadow: 0 4px 10px var(--light-skill-tag-shadow); /* ظل خفيف تحتها */
-    transition: background-color var(--hover-transition), color var(--hover-transition),
-                box-shadow var(--hover-transition), transform var(--hover-transition),
-                border-color var(--hover-transition); /* إضافة border-color للانتقال */
+    /* استخدام ظلين لإنشاء تأثير النيومورفيزم */
+    box-shadow: 6px 6px 12px var(--light-skill-tag-shadow-bottom),
+                -6px -6px 12px var(--light-skill-tag-shadow-top);
+    transition: background-color var(--hover-transition), color var(--hover-transition), box-shadow var(--hover-transition), transform var(--hover-transition);
 }
 body.light-mode .skill-tag:hover {
-    background-color: var(--light-skill-tag-hover-bg); /* خلفية خفيفة عند الهوفر */
-    border-color: var(--light-skill-tag-hover-border-color); /* تغيير لون الحدود إلى الأساسي */
-    box-shadow: 0 0 0 3px var(--light-skill-tag-hover-glow-color), /* طبقة توهج داخلية */
-                0 6px 15px rgba(0, 0, 0, 0.15); /* ظل أكبر وأوضح */
-    transform: translateY(-3px); /* رفع خفيف */
-    color: var(--light-text); /* ممكن نغير لون النص ليصبح أغمق قليلاً أو حسب الرغبة */
+    background: var(--light-skill-tag-hover-bg);
+    color: var(--light-skill-tag-hover-text);
+    /* عند التحويم، نقلب الظلال لتبدو كأنها "مضغوطة" أو "بارزة أكثر" */
+    box-shadow: inset 3px 3px 7px var(--light-skill-tag-shadow-bottom),
+                inset -3px -3px 7px var(--light-skill-tag-shadow-top);
+    transform: translateY(0); /* إلغاء الرفع عند التحويم ليظهر التأثير كأنها مضغوطة */
 }
-
+/* --- تعديلات هنا لـ Project Card في الوضع النهاري --- */
 body.light-mode .project-card {
-    background-color: var(--light-card-bg);
+    background-color: var(--light-card-bg); /* ستظل بيضاء في الوضع العادي */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* إضافة حدود خفيفة لتحديدها */
     box-shadow: 0 5px 20px var(--light-card-shadow);
-    transition: box-shadow var(--hover-transition), transform var(--hover-transition), background-color var(--transition-speed), border-color var(--transition-speed);
+    transition: box-shadow var(--hover-transition), transform var(--hover-transition),
+                background var(--hover-transition), color var(--hover-transition), border-color var(--hover-transition); /* إضافة transition لـ background و color */
 }
 body.light-mode .project-card:hover {
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end)); /* تدرج لوني عند الهوفر */
+    color: white; /* تغيير لون النص للأبيض ليتناسب مع الخلفية الملونة */
+    box-shadow: 0 15px 30px rgba(52, 152, 219, 0.3); /* ظل أزرق أكثر وضوحاً */
     transform: translateY(-10px); /* Lift effect */
+    border-color: transparent; /* إخفاء الحدود عند الهوفر لتتكامل مع التدرج */
 }
 body.light-mode .btn-project {
     background: linear-gradient(45deg, var(--light-gradient-start), var(--light-gradient-end));
@@ -339,12 +343,32 @@ body.dark-mode .social-icon:hover {
 /* Toggle Buttons (Language & Theme) */
 .toggle-btns {
     position: fixed;
-    top: 25px;
-    right: 25px;
+    top: 20px;   /* ثابتة على بعد 20 بكسل من الأعلى للشاشات الكبيرة والصغيرة */
+    right: 20px; /* ثابتة على بعد 20 بكسل من اليمين للشاشات الكبيرة والصغيرة */
     z-index: 1050;
     display: flex;
     gap: 12px;
+    padding: 10px 15px; /* مسافة داخلية حول الأزرار */
+    border-radius: 10px; /* حواف دائرية للمظهر الجمالي */
+    background-color: rgba(0, 0, 0, 0.7); /* خلفية شبه شفافة لتجميع الأزرار */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* ظل خفيف لتحسين المظهر */
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed); /* لتغير الألوان مع الثيم */
 }
+
+/* لتخصيص ألوان الخلفية لـ .toggle-btns في Dark Mode */
+body.dark-mode .toggle-btns {
+    background-color: rgba(26, 188, 156, 0.2); /* Teal شبه شفاف في Dark Mode */
+    box-shadow: 0 4px 15px rgba(26, 188, 156, 0.2);
+}
+
+/* تعديل موقع الأزرار في وضع RTL (اللغة العربية) */
+/* نستخدم هذا السلكتور لاستهداف .toggle-btns عندما يكون #content-ar فعالاً */
+#content-ar.active + .toggle-btns {
+    right: auto; /* إلغاء التثبيت من اليمين */
+    left: 20px;  /* تثبيت من اليسار */
+}
+
+
 .btn-toggle {
     font-weight: 600;
     border-radius: 30px;
@@ -380,16 +404,6 @@ body.dark-mode .social-icon:hover {
     width: 70px;
     border-radius: 2px;
     transition: background-color var(--transition-speed);
-}
-
-/* Fade-in/out for content sections */
-.profile-section {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out; /* فترة الانتقال */
-}
-
-.profile-section.active {
-    opacity: 1;
 }
 
 
@@ -494,9 +508,15 @@ body.dark-mode #backToTopBtn:hover {
         font-size: 0.9rem;
     }
     .toggle-btns {
-        top: 15px;
-        right: 15px;
+        top: 15px; /* ثابتة على بعد 15 بكسل من الأعلى على الجوال */
+        right: 15px; /* ثابتة على بعد 15 بكسل من اليمين على الجوال */
         gap: 8px;
+        padding: 8px 12px;
+    }
+    /* تعديل موقع الأزرار في وضع RTL (اللغة العربية) على الموبايل */
+    #content-ar.active + .toggle-btns {
+        left: 15px;
+        right: auto;
     }
     .btn-toggle {
         padding: 8px 15px;
